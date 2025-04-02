@@ -12,6 +12,7 @@ def login_required():
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
+            print("decorator called")
             provider = request.args.get("provider")
             oauth = get_auth(provider)
             if not oauth or not oauth.is_authenticated():
@@ -50,26 +51,19 @@ def dashboard():
     if not oauth_blueprint.is_authenticated():
         return redirect(url_for(f"{provider}.login"))
 
-    user_info = None
+    collcted_user_info = {}
     if oauth_blueprint.is_authenticated():
         user_info = oauth_blueprint.get_user_info(current_app.config["USER_INFO_ENDPOINT"][provider])
         if user_info.ok:
-            user_info = user_info.json()
+            collcted_user_info["name"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["name"]]
+            collcted_user_info["email"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["email"]]
+
         else:
             return "Failed to fetch user info", 500
 
-    return render_template("dashboard.html", user=user_info, provider=provider)
+    print(collcted_user_info)
 
-
-# @views.route("/dashboard/<provider>")
-#
-#     resp = oauth_blueprint.get_user_info(current_app.config["USER_INFO_ENDPOINT"][provider])
-#     if resp.ok:
-#         user_info = resp.json()
-#     else:
-#         return "Failed to fetch user info", 500
-#
-#     return render_template("dashboard.html", user=user_info, provider=provider)
+    return render_template("dashboard.html", user=collcted_user_info, provider=provider)
 
 
 @views.route("/logout/<provider>")

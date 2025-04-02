@@ -51,15 +51,19 @@ def dashboard():
     if not oauth_blueprint.is_authenticated():
         return redirect(url_for(f"{provider}.login"))
 
-    user_info = None
+    collected_user_info = {}
     if oauth_blueprint.is_authenticated():
         user_info = oauth_blueprint.get_user_info(current_app.config["USER_INFO_ENDPOINT"][provider])
         if user_info.ok:
-            user_info = user_info.json()
+            collected_user_info["name"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["name"]]
+            collected_user_info["email"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["email"]]
+
         else:
             return "Failed to fetch user info", 500
 
-    return render_template("dashboard.html", user=user_info, provider=provider)
+    print(collected_user_info)
+
+    return render_template("dashboard.html", user=collected_user_info, provider=provider)
 
 
 @views.route("/logout/<provider>")
