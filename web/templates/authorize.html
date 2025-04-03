@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authorize</title>
-</head>
-<body>
-    <h2>Choose a login provider:</h2>
-    <ul>
-        <li><a href="{{ url_for('google.login') }}"><button>Login with Google</button></a></li>
-        <li><a href="{{ url_for('microsoft.login') }}"><button>Login with Microsoft</button></a></li>
-    </ul>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Log In</h2>
+    <div class="login-container">
+        <a href="{{ url_for('google.login') }}" class="btn btn-danger btn-block">Login with Google</a>
+        <a href="{{ url_for('microsoft.login') }}" class="btn btn-primary btn-block">Login with Microsoft</a>
+        <a href="{{ url_for('views.signup') }}" class="btn btn-warning">Sign Up</a>
+    </div>
+</div>
+{% endblock %}

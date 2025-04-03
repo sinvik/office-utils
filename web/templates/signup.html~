@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Sign Up</h2>
+    <form method="POST" action="{{ url_for('views.signup') }}" class="signup-form">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+        <button type="submit" class="btn btn-success btn-block">Back</button>
+    </form>
+</div>
+{% endblock %}

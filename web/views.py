@@ -71,3 +71,22 @@ def logout(provider):
     oauth = get_auth(provider)
     oauth.logout()
     return redirect(url_for("views.authorize"))
+
+
+@views.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        email = request.form.get("email")
+
+        provider = email.split("@")[1].split(".")[0]
+        if provider == "gmail":
+            provider = "google"
+
+        elif provider == "outlook":
+            provider = "microsoft"
+
+        oauth = get_auth(provider)
+        if not oauth.is_authenticated():
+            return redirect(url_for(f"{provider}.login"))
+
+    return render_template("signup.html")

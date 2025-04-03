@@ -51,19 +51,19 @@ def dashboard():
     if not oauth_blueprint.is_authenticated():
         return redirect(url_for(f"{provider}.login"))
 
-    collcted_user_info = {}
+    collected_user_info = {}
     if oauth_blueprint.is_authenticated():
         user_info = oauth_blueprint.get_user_info(current_app.config["USER_INFO_ENDPOINT"][provider])
         if user_info.ok:
-            collcted_user_info["name"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["name"]]
-            collcted_user_info["email"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["email"]]
+            collected_user_info["name"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["name"]]
+            collected_user_info["email"] = user_info.json()[current_app.config["USER_INFO_MAPPING"][provider]["email"]]
 
         else:
             return "Failed to fetch user info", 500
 
-    print(collcted_user_info)
+    print(collected_user_info)
 
-    return render_template("dashboard.html", user=collcted_user_info, provider=provider)
+    return render_template("dashboard.html", user=collected_user_info, provider=provider)
 
 
 @views.route("/logout/<provider>")
@@ -71,3 +71,22 @@ def logout(provider):
     oauth = get_auth(provider)
     oauth.logout()
     return redirect(url_for("views.authorize"))
+
+
+@views.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        email = request.form.get("email")
+        name = email.split("@")[0]
+
+        provider = email.split("@")[1].split(".")[0]
+        if provider == "gmail":
+            provider = "google"
+        elif provider == "outlook":
+            provider = "microsoft"
+
+        oauth = get_auth(provider)
+        if not oauth.is_authenticated():
+            return redirect(url_for(f"{provider}.login"))
+
+    return render_template("signup.html")

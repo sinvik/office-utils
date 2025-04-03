@@ -3,6 +3,6 @@
 <div class="container">
     <h2>Welcome, {{ user['name'] }}</h2>
     <p>Email: {{ user['email'] }}</p>
-    <a href="{{ url_for('views.logout', provider=provider) }}" class="btn btn-warning">Log Out</a>
+    <a href="{{ url_for('views.logout') }}" class="btn btn-warning">Log Out</a>
 </div>
 {% endblock %}
