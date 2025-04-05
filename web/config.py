@@ -64,3 +64,11 @@ class Config:
         #     "scope": ["read:user"],
         # },
     }
+
+    MOONGO_USER = os.environ.get("MOONGO_USER")
+    MOONGO_PASSWORD = os.environ.get("MOONGO_PASSWORD")
+    MOONGO_HOST = os.environ.get("MOONGO_HOST")
+    MONGO_APP_NAME = os.environ.get("MONGO_APP_NAME")
+    MOONGO_DB = os.environ.get("MOONGO_DB")
+
+    MOONGO_URL = f"mongodb+srv://{MOONGO_USER}:{MOONGO_PASSWORD}@{MOONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
