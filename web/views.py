@@ -33,7 +33,7 @@ def authorize():
 
 
 @views.route("/login/<provider>/authorized")
-def final_redirect(provider):
+def authorized(provider):
     oauth = get_auth(provider)
     if not oauth.is_authenticated():
         print("Failed to authenticate", 500)
