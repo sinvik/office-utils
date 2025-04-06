@@ -32,13 +32,16 @@ def authorize():
     return render_template("authorize.html")  # Show login page with provider options
 
 
-@views.route("/login/<provider>/authorized")
+@views.route("/login/<provider>")
 def authorized(provider):
+    print(1, request.url)
     oauth = get_auth(provider)
     if not oauth.is_authenticated():
+        print(2, request.url)
         print("Failed to authenticate", 500)
         return redirect(url_for(f"{provider}.login"))  # Redirect dynamically
 
+    print(3, request.url)
     return redirect(url_for("views.dashboard", provider=provider))  # ✅ Clean URL
 
 
