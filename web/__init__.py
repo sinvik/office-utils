@@ -1,4 +1,5 @@
 from flask import Flask
+from werkzeug.middleware.proxy_fix import ProxyFix
 from web.config import Config
 from web.auth import OAuthHandler
 from web.views import views
@@ -6,6 +7,7 @@ from web.views import views
 
 def create_app():
     app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
     app.config.from_object(Config)
 
     app.config["oauth_providers"] = {}

@@ -1,5 +1,6 @@
 from web import create_app, connect_db
 
+
 app = create_app()
 
 
