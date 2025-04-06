@@ -24,6 +24,10 @@ class OAuthHandler:
         app.secret_key = config.SECRET_KEY
         app.register_blueprint(self.blueprint, url_prefix="/login")
 
+        print("Redirect URI 1 :", self.blueprint.authorization_url_params)
+        print("Redirect URL 2 :", self.blueprint.redirect_url)
+
+
     def is_authenticated(self):
         return self.blueprint.session.authorized
 
