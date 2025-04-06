@@ -19,7 +19,7 @@ class OAuthHandler:
             token_url=provider_config["token_url"],
             base_url=provider_config["base_url"],
             scope=provider_config["scope"],
-            redirect_url="final-redirect",
+            redirect_url="authorized",
         )
         app.secret_key = config.SECRET_KEY
         app.register_blueprint(self.blueprint, url_prefix="/login")

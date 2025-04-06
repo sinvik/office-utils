@@ -32,7 +32,7 @@ def authorize():
     return render_template("authorize.html")  # Show login page with provider options
 
 
-@views.route("/login/<provider>/final-redirect")
+@views.route("/login/<provider>/authorized")
 def final_redirect(provider):
     oauth = get_auth(provider)
     if not oauth.is_authenticated():
