@@ -36,6 +36,7 @@ class Config:
                 "https://www.googleapis.com/auth/userinfo.email",
                 "https://www.googleapis.com/auth/userinfo.profile"
             ],
+            "redirect_uri": "https://office-utils.duckdns.org/login/google/authorized"
         },
         "microsoft": {
             "client_id": os.environ.get("MICROSOFT_CLIENT_ID"),

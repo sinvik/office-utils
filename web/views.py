@@ -32,7 +32,7 @@ def authorize():
     return render_template("authorize.html")  # Show login page with provider options
 
 
-@views.route("/login/<provider>")
+@views.route("/login/<provider>/authorized")
 def authorized(provider):
     print(1, request.url)
     oauth = get_auth(provider)
