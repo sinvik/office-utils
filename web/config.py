@@ -15,7 +15,7 @@ class Config:
             "name": "displayName"}
     }
 
-    SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "supersecretkey")  # Change for production
+    SECRET_KEY = os.environ.get("FLASK_SECRET_KEY")  # Change for production
 
     USER_INFO_ENDPOINT = {
             "google": "https://www.googleapis.com/oauth2/v2/userinfo",
