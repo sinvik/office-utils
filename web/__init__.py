@@ -23,5 +23,5 @@ def create_app():
 def connect_db(app):
     from back_end.mongo_connector import MongoDBConnector
 
-    conn = MongoDBConnector(app.config["MOONGO_URL"])
-    app.config["mongo_db"] = conn.load_database(app.config["MOONGO_DB"])
+    conn = MongoDBConnector(app.config["MONGO_URL"])
+    # app.config["mongo_db"] = conn.load_database(app.config["MONGO_DB"])

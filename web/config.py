@@ -1,7 +1,10 @@
 import os
+from dotenv import load_dotenv, find_dotenv
 
 
 class Config:
+
+    load_dotenv(find_dotenv())
 
     USER_INFO_MAPPING = {
         "google": {
@@ -65,10 +68,10 @@ class Config:
         # },
     }
 
-    MOONGO_USER = os.environ.get("MOONGO_USER")
-    MOONGO_PASSWORD = os.environ.get("MOONGO_PASSWORD")
-    MOONGO_HOST = os.environ.get("MOONGO_HOST")
+    MONGO_USER = os.environ.get("MONGO_USER")
+    MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD")
+    MONGO_HOST = os.environ.get("MONGO_HOST")
     MONGO_APP_NAME = os.environ.get("MONGO_APP_NAME")
-    MOONGO_DB = os.environ.get("MOONGO_DB")
+    MONGO_DB = os.environ.get("MONGO_DB")
 
-    MOONGO_URL = f"mongodb+srv://{MOONGO_USER}:{MOONGO_PASSWORD}@{MOONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
+    MONGO_URL = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
