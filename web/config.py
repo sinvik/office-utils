@@ -31,7 +31,7 @@ class Config:
             "authorization_url": "https://accounts.google.com/o/oauth2/auth",
             "token_url": "https://oauth2.googleapis.com/token",
             "base_url": "https://www.googleapis.com/oauth2/v4/",
-            "redirect_url": "http://localhost:5000/login/google/authorized",
+            "redirect_url": "https://office-utils.duckdns.org/login/google/authorized",
             "scope": [
                 "openid",
                 "https://www.googleapis.com/auth/userinfo.email",
