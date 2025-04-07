@@ -31,7 +31,7 @@ class Config:
             "authorization_url": "https://accounts.google.com/o/oauth2/auth",
             "token_url": "https://oauth2.googleapis.com/token",
             "base_url": "https://www.googleapis.com/oauth2/v4/",
-            "redirect_url": "https://office-utils.duckdns.org/login/google/authorized",
+            "redirect_url": "final-redirect",
             "scope": [
                 "openid",
                 "https://www.googleapis.com/auth/userinfo.email",
@@ -44,30 +44,14 @@ class Config:
             "authorization_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             "token_url": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
             "base_url": "https://graph.microsoft.com/v1.0/",
-            "redirect_url": "http://localhost:5000/login/google/authorized",
+            "redirect_url": "final-redirect",
             "scope": [
                 "openid",
                 "email",
                 "profile",
                 "User.Read"  # ✅ Allows reading basic user info
              ],
-        },
-        # "gitlab": {
-        #     "client_id": os.environ.get("GITLAB_CLIENT_ID"),
-        #     "client_secret": os.environ.get("GITLAB_CLIENT_SECRET"),
-        #     "authorization_url": "https://accounts.google.com/o/oauth2/auth",
-        #     "token_url": "https://oauth2.googleapis.com/token",
-        #     "base_url": "https://www.googleapis.com/oauth2/v4/",
-        #     "scope": ["read_user"],
-        # },
-        # "github": {
-        #     "client_id": os.environ.get("GITHUB_CLIENT_ID"),
-        #     "client_secret": os.environ.get("GITHUB_CLIENT_SECRET"),
-        #     "authorization_url": "https://accounts.google.com/o/oauth2/auth",
-        #     "token_url": "https://oauth2.googleapis.com/token",
-        #     "base_url": "https://www.googleapis.com/oauth2/v3/userinfo",
-        #     "scope": ["read:user"],
-        # },
+        }
     }
 
     MONGO_USER = os.environ.get("MONGO_USER")

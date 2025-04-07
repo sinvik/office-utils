@@ -10,14 +10,12 @@ def create_app():
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1)
     app.config.from_object(Config)
     app.secret_key = Config.SECRET_KEY
-    app.config["SESSION_COOKIE_SECURE"] = True
 
     app.config["oauth_providers"] = {}
 
     for provider in Config.OAUTH_PROVIDERS:
         oauth_instance = OAuthHandler(app, provider, Config)
         app.config["oauth_providers"][provider]: OAuthHandler = oauth_instance
-        print([provider])
 
     app.register_blueprint(views)
 

@@ -23,25 +23,17 @@ def login_required():
 
 
 @views.route("/")
-def home():
-    return redirect(url_for("views.authorize"))  # Redirect to authorization page
-
-
-@views.route("/authorize")
 def authorize():
     return render_template("authorize.html")  # Show login page with provider options
 
 
-@views.route("/login/<provider>/authorized")
-def authorized(provider):
-    print(1, request.url)
+@views.route("/login/<provider>/final-redirect")
+def final_redirect(provider):
     oauth = get_auth(provider)
     if not oauth.is_authenticated():
-        print(2, request.url)
         print("Failed to authenticate", 500)
         return redirect(url_for(f"{provider}.login"))  # Redirect dynamically
 
-    print(3, request.url)
     return redirect(url_for("views.dashboard", provider=provider))  # ✅ Clean URL
 
 

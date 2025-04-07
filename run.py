@@ -6,7 +6,7 @@ app = create_app()
 
 if __name__ == '__main__':
 
-    connect_db(app)
+    # connect_db(app)
 
     app.run()
 
